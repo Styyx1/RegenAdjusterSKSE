@@ -4,7 +4,7 @@ void Loki::RegenAdjuster::ActorUpdateF(RE::Actor* a_actor, float a_zPos, RE::TES
 
 	auto ptr = Loki::RegenAdjuster::GetSingleton();
 
-	a_actor->SetActorValue(RE::ActorValue::kCombatHealthRegenMultiply, ptr->CombatHealRate);
+	a_actor->AsActorValueOwner()->SetActorValue(RE::ActorValue::kCombatHealthRegenMultiply, ptr->CombatHealRate);
 	SetGMST("fCombatMagickaRegenRateMult", ptr->CombatMagickaRate);
 	SetGMST("fCombatStaminaRegenRateMult", ptr->CombatStaminaRate);
 
@@ -33,19 +33,19 @@ void Loki::RegenAdjuster::ActorUpdateF(RE::Actor* a_actor, float a_zPos, RE::TES
 	if (a_actor->IsRunning()) {
 		hRate = ptr->RunHealRate, sRate = ptr->RunStaminaRate, mRate = ptr->RunMagickaRate;
 	}
-	if (a_actor->actorState2.wantBlocking) {
+	if (a_actor->AsActorState()->actorState2.wantBlocking) {
 		hRate = ptr->BlockHealRate, sRate = ptr->BlockStaminaRate, mRate = ptr->BlockMagickaRate;
 	}
-	if (a_actor->IsSprinting()) {
+	if (a_actor->AsActorState()->IsSprinting()) {
 		hRate = ptr->SprintHealRate, mRate = ptr->SprintMagickaRate;
 	}
-	if (a_actor->IsSwimming()) {
+	if (a_actor->AsActorState()->IsSwimming()) {
 		hRate = ptr->SwimHealRate, sRate = ptr->SwimStaminaRate, mRate = ptr->SwimMagickaRate;
 	}
 
-	a_actor->SetActorValue(RE::ActorValue::kHealRate, hRate);
-	a_actor->SetActorValue(RE::ActorValue::StaminaRate, sRate);
-	a_actor->SetActorValue(RE::ActorValue::kMagickaRate, mRate);
+	a_actor->AsActorValueOwner()->SetActorValue(RE::ActorValue::kHealRate, hRate);
+	a_actor->AsActorValueOwner()->SetActorValue(RE::ActorValue::kStaminaRate, sRate);
+	a_actor->AsActorValueOwner()->SetActorValue(RE::ActorValue::kMagickaRate, mRate);
 
 	return _ActorUpdateF(a_actor, a_zPos, a_cell);
 
