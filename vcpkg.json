@@ -1,25 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
-  "name": "commonlibsse-plugin",
-  "version-string": "1.0.0",
-  "port-version": 0,
-  "description": "SKSE plugin based on CommonLibSSE, for unified AE/SE/VR deployment.",
-  "homepage": "https://www.skyrimng.com",
-  "license": "Apache-2.0",
-  "features": {
-      "plugin": {
-          "description": "Build the SKSE plugin.",
-        "dependencies": [
-          "span-lite",
-          "commonlibsse-ng",
-          "xbyak",
-          "spdlog",
-          "rsm-binary-io",
-          "simpleini"
-        ]
-      }
-  },
-  "default-features": [
-      "plugin"
+  "name": "loki-regenadjuster",
+  "version-string": "2.0.0",
+  "port-version": 1,
+  "description": "",
+  "homepage": "",
+  "license": "MIT",
+  "dependencies": [
+    "spdlog",
+    "simpleini",
+    "commonlibsse-ng",
+    "rsm-binary-io"
+  ],
+  "builtin-baseline": "bd1ef2df46303989eeb048eb7aa9b816aa46365e",
+  "overrides": [
+    {
+      "name": "fmt",
+      "version": "8.0.1"
+    }
   ]
 }
+
